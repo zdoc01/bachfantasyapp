@@ -1,2 +1,2 @@
-require('babel-register'); // allow ES6 on server
-require('../server-es6');
+require('babel-register'); // allow server-side ES6
+require('../server');
