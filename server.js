@@ -11,11 +11,11 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
+app.use('/api', routes());
+
+app.get('*', (req, res) => {
   res.render('index');
 });
-
-app.use('/api', routes());
 
 /**
  * Receives POST messages from CloudMailIn when incoming email
