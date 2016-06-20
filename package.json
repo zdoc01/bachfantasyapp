@@ -4,7 +4,10 @@
   "description": "bachfantasy.com app",
   "main": "server.js",
   "scripts": {
-    "start": "node bin/start"
+    "all": "npm run build && npm start",
+    "build": "./node_modules/.bin/webpack",
+    "start": "node bin/start",
+    "watch": "./node_modules/.bin/webpack --progress --colors --watch"
   },
   "author": "me",
   "license": "MIT",
