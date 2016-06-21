@@ -1,2 +1,42 @@
+.app-header {
+  width: 100%;
+  margin-bottom: 10px;
+  border-bottom: 1px solid;
+  box-shadow: 0 1px 15px; }
+  .app-header .nav-bar {
+    margin: 0 20px; }
+    .app-header .nav-bar a {
+      text-decoration: none;
+      color: black; }
+    .app-header .nav-bar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+    .app-header .nav-bar .left-nav {
+      float: left; }
+      .app-header .nav-bar .left-nav > li {
+        float: left; }
+      .app-header .nav-bar .left-nav > li > a {
+        display: block;
+        padding: 30px; }
+      .app-header .nav-bar .left-nav .active {
+        background-color: red;
+        color: white; }
+    .app-header .nav-bar .right-nav {
+      float: right; }
+      .app-header .nav-bar .right-nav > li {
+        padding: 30px; }
+
+body {
+  margin: 0; }
+
+.clearfix::after {
+  display: table;
+  clear: both;
+  content: ''; }
+
+.container {
+  margin: 0 20px; }
+
 h1 .red {
   color: red; }

@@ -25912,11 +25912,11 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _Home = __webpack_require__(236);
+	var _Home = __webpack_require__(237);
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _SignUp = __webpack_require__(237);
+	var _SignUp = __webpack_require__(238);
 
 	var _SignUp2 = _interopRequireDefault(_SignUp);
 
@@ -25943,18 +25943,100 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _Header = __webpack_require__(236);
+
+	var _Header2 = _interopRequireDefault(_Header);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = function (props) {
 		return _react2.default.createElement(
 			'div',
 			null,
-			props.children
+			_react2.default.createElement(_Header2.default, null),
+			_react2.default.createElement(
+				'div',
+				{ className: 'container' },
+				props.children
+			)
 		);
 	};
 
 /***/ },
 /* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(173);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (props) {
+		return _react2.default.createElement(
+			'header',
+			{ className: 'app-header' },
+			_react2.default.createElement(
+				'nav',
+				{ className: 'nav-bar clearfix' },
+				_react2.default.createElement(
+					'ul',
+					{ className: 'left-nav' },
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/' },
+							'Home'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/rules' },
+							'Rules'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/about' },
+							'About'
+						)
+					)
+				),
+				_react2.default.createElement(
+					'ul',
+					{ className: 'right-nav' },
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/signup' },
+							'Sign Up'
+						)
+					)
+				)
+			)
+		);
+	};
+
+/***/ },
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25996,17 +26078,12 @@
 					'www.bachfantasy.com'
 				),
 				'.'
-			),
-			_react2.default.createElement(
-				_reactRouter.Link,
-				{ to: '/signup', 'class': 'button' },
-				'Sign Up'
 			)
 		);
 	};
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Header from './Header';
 
 export default props => {
 	return (
 		<div>
-			{props.children}
+			<Header />
+				<div className="container">
+					{props.children}
+				</div>
 		</div>
 	);
 };

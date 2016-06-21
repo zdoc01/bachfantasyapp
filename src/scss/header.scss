@@ -1,0 +1,47 @@
+.app-header {
+	width: 100%;
+	margin-bottom: 10px;
+	border-bottom: 1px solid;
+	box-shadow: 0 1px 15px;
+
+	.nav-bar {
+		margin: 0 20px;
+
+		a {
+			text-decoration: none;
+			color: black;
+		}
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.left-nav {
+			float: left;
+
+			&> li {
+				float: left;
+			}
+
+			&> li > a {
+				display: block;
+				padding: 30px;
+			}
+
+			.active {
+				background-color: red;
+				color: white;
+			}
+		}
+
+		.right-nav {
+			float: right;
+
+			&> li {
+				padding: 30px;
+			}
+		}
+	}
+}
