@@ -25920,13 +25920,23 @@
 
 	var _SignUp2 = _interopRequireDefault(_SignUp);
 
+	var _About = __webpack_require__(239);
+
+	var _About2 = _interopRequireDefault(_About);
+
+	var _Rules = __webpack_require__(240);
+
+	var _Rules2 = _interopRequireDefault(_Rules);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createElement(
 	  _reactRouter.Route,
 	  { path: '/', component: _App2.default },
 	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _SignUp2.default })
+	  _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _SignUp2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _About2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/rules', component: _Rules2.default })
 	);
 
 /***/ },
@@ -26124,6 +26134,82 @@
 	      )
 	    )
 	  );
+	};
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(173);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function () {
+		return _react2.default.createElement(
+			'section',
+			null,
+			_react2.default.createElement(
+				'h1',
+				null,
+				'About Us'
+			),
+			_react2.default.createElement(
+				'p',
+				null,
+				'Some info about us...'
+			)
+		);
+	};
+
+/***/ },
+/* 240 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(173);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function () {
+		return _react2.default.createElement(
+			'section',
+			null,
+			_react2.default.createElement(
+				'h1',
+				null,
+				'League Rules'
+			),
+			_react2.default.createElement(
+				'p',
+				null,
+				'The scoring for each week follows the official ',
+				_react2.default.createElement(
+					'a',
+					{ href: 'https://bachfantasy.com/the-points-system/', target: '_blank' },
+					'Bach Fantasy Points System'
+				),
+				'.'
+			)
+		);
 	};
 
 /***/ }
