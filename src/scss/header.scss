@@ -5,8 +5,6 @@
 	box-shadow: 0 1px 15px;
 
 	.nav-bar {
-		margin: 0 20px;
-
 		a {
 			text-decoration: none;
 			color: black;
@@ -16,14 +14,14 @@
 			list-style: none;
 			margin: 0;
 			padding: 0;
-		}
-
-		.left-nav {
-			float: left;
 
 			&> li {
 				float: left;
 			}
+		}
+
+		.left-nav {
+			float: left;
 
 			&> li > a {
 				display: block;

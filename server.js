@@ -1,16 +1,22 @@
 import express from 'express';
 import routes from './routes';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false })); // parse form data
+app.use(cookieParser());
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+// REST API
 app.use('/api', routes());
 
 app.get('*', (req, res) => {

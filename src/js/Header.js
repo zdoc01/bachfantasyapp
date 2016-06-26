@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 export default props => {
 	return (
 		<header className="app-header">
-			<nav className="nav-bar clearfix">
+			<nav className="nav-bar clearfix container">
 				<ul className="left-nav">
 					<li><Link to="/">Home</Link></li>
 					<li><Link to="/rules">Rules</Link></li>
@@ -12,6 +12,7 @@ export default props => {
 				</ul>
 				<ul className="right-nav">
 					<li><Link to="/signup">Sign Up</Link></li>
+					<li><Link to="/login">Login</Link></li>
 				</ul>
 			</nav>
 		</header>
