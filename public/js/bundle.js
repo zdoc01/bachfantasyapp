@@ -26749,23 +26749,23 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _Home = __webpack_require__(244);
+	var _Home = __webpack_require__(245);
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _SignUp = __webpack_require__(245);
+	var _SignUp = __webpack_require__(246);
 
 	var _SignUp2 = _interopRequireDefault(_SignUp);
 
-	var _Login = __webpack_require__(247);
+	var _Login = __webpack_require__(248);
 
 	var _Login2 = _interopRequireDefault(_Login);
 
-	var _About = __webpack_require__(248);
+	var _About = __webpack_require__(249);
 
 	var _About2 = _interopRequireDefault(_About);
 
-	var _Rules = __webpack_require__(249);
+	var _Rules = __webpack_require__(250);
 
 	var _Rules2 = _interopRequireDefault(_Rules);
 
@@ -26795,9 +26795,9 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Header = __webpack_require__(242);
+	var _header = __webpack_require__(242);
 
-	var _Header2 = _interopRequireDefault(_Header);
+	var _header2 = _interopRequireDefault(_header);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26805,7 +26805,7 @@
 		return _react2.default.createElement(
 			'div',
 			null,
-			_react2.default.createElement(_Header2.default, null),
+			_react2.default.createElement(_header2.default, null),
 			_react2.default.createElement(
 				'div',
 				{ className: 'container' },
@@ -26834,44 +26834,14 @@
 
 	var _jsCookie2 = _interopRequireDefault(_jsCookie);
 
+	var _RightNav = __webpack_require__(244);
+
+	var _RightNav2 = _interopRequireDefault(_RightNav);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = function (props) {
 		var username = _jsCookie2.default.get('username');
-
-		var rightNav = void 0;
-		if (username) {
-			rightNav = _react2.default.createElement(
-				'span',
-				{ className: 'right-nav welcome' },
-				'Welcome, ',
-				username.split('@')[0],
-				'!'
-			);
-		} else {
-			rightNav = _react2.default.createElement(
-				'ul',
-				{ className: 'right-nav' },
-				_react2.default.createElement(
-					'li',
-					null,
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/signup' },
-						'Sign Up'
-					)
-				),
-				_react2.default.createElement(
-					'li',
-					null,
-					_react2.default.createElement(
-						_reactRouter.Link,
-						{ to: '/login' },
-						'Login'
-					)
-				)
-			);
-		}
 
 		return _react2.default.createElement(
 			'header',
@@ -26910,7 +26880,7 @@
 						)
 					)
 				),
-				rightNav
+				_react2.default.createElement(_RightNav2.default, { username: username })
 			)
 		);
 	};
@@ -27082,6 +27052,114 @@
 		value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(177);
+
+	var _jsCookie = __webpack_require__(243);
+
+	var _jsCookie2 = _interopRequireDefault(_jsCookie);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var RightNav = function (_Component) {
+		_inherits(RightNav, _Component);
+
+		function RightNav() {
+			_classCallCheck(this, RightNav);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(RightNav).call(this));
+		}
+
+		_createClass(RightNav, [{
+			key: 'onLogout',
+			value: function onLogout() {
+				_jsCookie2.default.remove('username');
+			}
+		}, {
+			key: 'renderReturningUserNav',
+			value: function renderReturningUserNav() {
+				return _react2.default.createElement(
+					'ul',
+					{ className: 'right-nav' },
+					_react2.default.createElement(
+						'li',
+						null,
+						'Welcome, ',
+						this.props.username,
+						'!'
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/', onClick: this.onLogout },
+							'Logout'
+						)
+					)
+				);
+			}
+		}, {
+			key: 'renderNewUserNav',
+			value: function renderNewUserNav() {
+				return _react2.default.createElement(
+					'ul',
+					{ className: 'right-nav' },
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/signup' },
+							'Sign Up'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/login' },
+							'Login'
+						)
+					)
+				);
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				return this.props.username ? this.renderReturningUserNav() : this.renderNewUserNav();
+			}
+		}]);
+
+		return RightNav;
+	}(_react.Component);
+
+	;
+
+	exports.default = RightNav;
+
+/***/ },
+/* 245 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
 	var _react = __webpack_require__(6);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -27120,7 +27198,7 @@
 	};
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27137,7 +27215,7 @@
 
 	var _reactRouter = __webpack_require__(177);
 
-	var _forms = __webpack_require__(246);
+	var _forms = __webpack_require__(247);
 
 	var _forms2 = _interopRequireDefault(_forms);
 
@@ -27250,7 +27328,7 @@
 	exports.default = (0, _reactRouter.withRouter)(SignUp);
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27282,7 +27360,7 @@
 	};
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27299,7 +27377,7 @@
 
 	var _reactRouter = __webpack_require__(177);
 
-	var _forms = __webpack_require__(246);
+	var _forms = __webpack_require__(247);
 
 	var _forms2 = _interopRequireDefault(_forms);
 
@@ -27387,7 +27465,7 @@
 	exports.default = (0, _reactRouter.withRouter)(Login);
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27422,7 +27500,7 @@
 	};
 
 /***/ },
-/* 249 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
