@@ -3,9 +3,6 @@
   margin-bottom: 10px;
   border-bottom: 1px solid;
   box-shadow: 0 1px 15px; }
-  .app-header .nav-bar a {
-    text-decoration: none;
-    color: black; }
   .app-header .nav-bar ul {
     list-style: none;
     margin: 0;
@@ -16,12 +13,16 @@
     float: left; }
     .app-header .nav-bar .left-nav > li > a {
       display: block;
-      padding: 30px; }
+      padding: 30px;
+      text-decoration: none;
+      color: black; }
     .app-header .nav-bar .left-nav .active {
       background-color: red;
       color: white; }
   .app-header .nav-bar .right-nav {
     float: right; }
+    .app-header .nav-bar .right-nav.welcome {
+      padding: 30px; }
     .app-header .nav-bar .right-nav > li {
       padding: 30px; }
 

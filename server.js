@@ -2,10 +2,20 @@ import express from 'express';
 import routes from './routes';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import mongoose from 'mongoose';
+import User from './models/User';
 
+const ENV = process.env;
 const app = express();
 
-app.set('port', (process.env.PORT || 5000));
+mongoose.connect(ENV.MONGODB_URI);
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+	console.log('Successfully connected to mongo.');
+});
+
+app.set('port', (ENV.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
