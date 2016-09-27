@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import forms from '../utils/forms';
+import forms from '../common/utils/forms';
 
 class SignUp extends Component {
 

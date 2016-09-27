@@ -10,7 +10,7 @@ const app = express();
 
 mongoose.connect(ENV.MONGODB_URI);
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'Mongo connection error!\n\n'));
 db.once('open', () => {
 	console.log('Successfully connected to mongo.');
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import jsCookie from 'js-cookie';
-import RightNav from './sub-components/RightNav';
+import RightNav from './components/RightNav';
 
 export default props => {
 	const username = jsCookie.get('username');
