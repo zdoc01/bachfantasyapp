@@ -5,7 +5,7 @@ import Home from './home';
 import SignUp from './sign-up';
 import Login from './login';
 import About from './about';
-import Rules, { BachFantasy, Leagues, Survivor } from './rules'
+import Games, { BachFantasy, Survivor } from './games'
 import Dash from './dashboard';
 
 export default (
@@ -16,11 +16,9 @@ export default (
     <Route path="login" component={Login}/>
     <Route path="about" component={About}/>
     <Route path="dashboard" component={Dash}/>
-    
-    <Route path="rules" component={Rules}>
-    	<IndexRoute component={Leagues}/>
-    	<Route path="bachfantasy" component={BachFantasy}/>
-    	<Route path="survivor" component={Survivor}/>
-    </Route>
+
+    <Route path="games" component={Games}/>
+    <Route path="games/bachfantasy" component={BachFantasy}/>
+    <Route path="games/survivor" component={Survivor}/>
   </Route>
 );

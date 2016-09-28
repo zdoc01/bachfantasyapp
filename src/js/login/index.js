@@ -13,8 +13,8 @@ class Login extends Component {
 	handleResponse(xhr) {
 		if (xhr.readyState === XMLHttpRequest.DONE) {
 			if (xhr.status === 200) {
-				// redirect to Home
-				this.props.router.push('/');
+				// redirect to dashboard
+				this.props.router.push('/dashboard');
 			} else {
 				let message = JSON.parse(xhr.responseText).message;
 				alert(message);

@@ -27134,11 +27134,11 @@
 
 	var _about2 = _interopRequireDefault(_about);
 
-	var _rules = __webpack_require__(250);
+	var _games = __webpack_require__(250);
 
-	var _rules2 = _interopRequireDefault(_rules);
+	var _games2 = _interopRequireDefault(_games);
 
-	var _dashboard = __webpack_require__(255);
+	var _dashboard = __webpack_require__(254);
 
 	var _dashboard2 = _interopRequireDefault(_dashboard);
 
@@ -27152,13 +27152,9 @@
 	  _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _login2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _about2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: 'dashboard', component: _dashboard2.default }),
-	  _react2.default.createElement(
-	    _reactRouter.Route,
-	    { path: 'rules', component: _rules2.default },
-	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _rules.Leagues }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'bachfantasy', component: _rules.BachFantasy }),
-	    _react2.default.createElement(_reactRouter.Route, { path: 'survivor', component: _rules.Survivor })
-	  )
+	  _react2.default.createElement(_reactRouter.Route, { path: 'games', component: _games2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: 'games/bachfantasy', component: _games.BachFantasy }),
+	  _react2.default.createElement(_reactRouter.Route, { path: 'games/survivor', component: _games.Survivor })
 	);
 
 /***/ },
@@ -27246,8 +27242,8 @@
 						null,
 						_react2.default.createElement(
 							_reactRouter.Link,
-							{ to: '/rules' },
-							'Rules'
+							{ to: '/games' },
+							'Games'
 						)
 					),
 					_react2.default.createElement(
@@ -27793,7 +27789,7 @@
 				if (xhr.readyState === XMLHttpRequest.DONE) {
 					if (xhr.status === 200) {
 						// redirect to Home
-						this.props.router.push('/');
+						this.props.router.push('/dashboard');
 					} else {
 						var message = JSON.parse(xhr.responseText).message;
 						alert(message);
@@ -27893,15 +27889,15 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.Survivor = exports.Leagues = exports.BachFantasy = undefined;
+	exports.Survivor = exports.BachFantasy = undefined;
 
 	var _react = __webpack_require__(6);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _rules = __webpack_require__(251);
+	var _games = __webpack_require__(251);
 
-	var _rules2 = _interopRequireDefault(_rules);
+	var _games2 = _interopRequireDefault(_games);
 
 	var _bachfantasy = __webpack_require__(252);
 
@@ -27911,16 +27907,11 @@
 
 	var _survivor2 = _interopRequireDefault(_survivor);
 
-	var _leagues = __webpack_require__(254);
-
-	var _leagues2 = _interopRequireDefault(_leagues);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.BachFantasy = _bachfantasy2.default;
-	exports.Leagues = _leagues2.default;
 	exports.Survivor = _survivor2.default;
-	exports.default = _rules2.default;
+	exports.default = _games2.default;
 
 /***/ },
 /* 251 */
@@ -27936,18 +27927,41 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRouter = __webpack_require__(177);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = function (props) {
+	exports.default = function () {
 		return _react2.default.createElement(
 			'section',
 			null,
 			_react2.default.createElement(
 				'h1',
 				null,
-				'League Rules'
+				'Games'
 			),
-			props.children
+			_react2.default.createElement(
+				'ul',
+				null,
+				_react2.default.createElement(
+					'li',
+					null,
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/games/bachfantasy' },
+						'bachfantasy'
+					)
+				),
+				_react2.default.createElement(
+					'li',
+					null,
+					_react2.default.createElement(
+						_reactRouter.Link,
+						{ to: '/games/survivor' },
+						'Survivor'
+					)
+				)
+			)
 		);
 	};
 
@@ -27969,23 +27983,48 @@
 
 	exports.default = function () {
 		return _react2.default.createElement(
-			"article",
+			"section",
 			null,
 			_react2.default.createElement(
-				"h2",
+				"h1",
 				null,
 				"bachfantasy"
 			),
 			_react2.default.createElement(
 				"p",
 				null,
-				"The scoring for each week follows the official ",
+				"A fantasy game for the hit ABC show The Bachelor/Bachelorette."
+			),
+			_react2.default.createElement(
+				"p",
+				null,
+				"Visit the ",
 				_react2.default.createElement(
 					"a",
-					{ href: "https://bachfantasy.com/the-points-system/", target: "_blank" },
-					"Bach Fantasy Points System"
+					{ href: "http://abc.go.com/shows/the-bachelor", target: "_blank" },
+					"ABC website"
 				),
-				"."
+				" for more information."
+			),
+			_react2.default.createElement(
+				"article",
+				null,
+				_react2.default.createElement(
+					"h2",
+					null,
+					"Rules"
+				),
+				_react2.default.createElement(
+					"p",
+					null,
+					"The scoring for each week follows the official ",
+					_react2.default.createElement(
+						"a",
+						{ href: "https://bachfantasy.com/the-points-system/", target: "_blank" },
+						"Bach Fantasy Points System"
+					),
+					"."
+				)
 			)
 		);
 	};
@@ -27994,7 +28033,7 @@
 /* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -28008,252 +28047,277 @@
 
 	exports.default = function () {
 		return _react2.default.createElement(
-			'article',
+			"section",
 			null,
 			_react2.default.createElement(
-				'h2',
+				"h1",
 				null,
-				'Survivor'
+				"Survivor"
 			),
 			_react2.default.createElement(
-				'article',
+				"p",
+				null,
+				"A fantasy game for the hit CBS show Survivor."
+			),
+			_react2.default.createElement(
+				"p",
+				null,
+				"Visit the ",
+				_react2.default.createElement(
+					"a",
+					{ href: "http://www.cbs.com/shows/survivor/", target: "_blank" },
+					"ABC website"
+				),
+				" for more information."
+			),
+			_react2.default.createElement(
+				"article",
 				null,
 				_react2.default.createElement(
-					'h3',
+					"h2",
 					null,
-					'Confessionals and Questions'
+					"Rules"
 				),
 				_react2.default.createElement(
-					'dl',
+					"article",
 					null,
 					_react2.default.createElement(
-						'dt',
+						"h3",
 						null,
-						'Player confessionals'
+						"Confessionals and Questions"
 					),
 					_react2.default.createElement(
-						'dd',
+						"dl",
 						null,
-						'+1 per confessional (10 seconds between confessionals is a new confessional for scoring purposes)'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Player voting confessional'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+2 if Player has a confessional while casting their vote at Tribal Council'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Player says the title of the episode'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+3'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Jeff Probst questions'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+1 per question directed to the Player by Jeff at Tribal Council or a Challenge'
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player confessionals"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+1 per confessional (10 seconds between confessionals is a new confessional for scoring purposes)"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player voting confessional"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+2 if Player has a confessional while casting their vote at Tribal Council"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player says the title of the episode"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+3"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Jeff Probst questions"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+1 per question directed to the Player by Jeff at Tribal Council or a Challenge"
+						)
 					)
-				)
-			),
-			_react2.default.createElement(
-				'article',
-				null,
-				_react2.default.createElement(
-					'h3',
-					null,
-					'Immunity and Idols'
 				),
 				_react2.default.createElement(
-					'dl',
+					"article",
 					null,
 					_react2.default.createElement(
-						'dt',
+						"h3",
 						null,
-						'Player wins immunity'
+						"Immunity and Idols"
 					),
 					_react2.default.createElement(
-						'dd',
+						"dl",
 						null,
-						'+4 tribal, +7 individual, +10 for winning Final Immunity Challenge'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Player\'s Tribe gets second place in immunity challenge (three-tribe format only)'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+3'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Player finds or plays a hidden immunity idol'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+5'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Player has possession of a hidden immunity idol at the start of an episode'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+1'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Player is awarded, finds, or plays extra vote advantage (if implemented this season)'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+5'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Player receives Legacy Advantage (either when found or when willed by the exiting Player who previously held the Advantage)'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+5'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Player is saved from elimination by hidden immunity idol'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+10'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Player is saved from elimination by extra vote advantage (if implemented this season)'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+10'
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player wins immunity"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+4 tribal, +7 individual, +10 for winning Final Immunity Challenge"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player's Tribe gets second place in immunity challenge (three-tribe format only)"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+3"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player finds or plays a hidden immunity idol"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+5"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player has possession of a hidden immunity idol at the start of an episode"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+1"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player is awarded, finds, or plays extra vote advantage (if implemented this season)"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+5"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player receives Legacy Advantage (either when found or when willed by the exiting Player who previously held the Advantage)"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+5"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player is saved from elimination by hidden immunity idol"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+10"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player is saved from elimination by extra vote advantage (if implemented this season)"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+10"
+						)
 					)
-				)
-			),
-			_react2.default.createElement(
-				'article',
-				null,
-				_react2.default.createElement(
-					'h3',
-					null,
-					'Rewards'
 				),
 				_react2.default.createElement(
-					'dl',
+					"article",
 					null,
 					_react2.default.createElement(
-						'dt',
+						"h3",
 						null,
-						'Player wins reward'
+						"Rewards"
 					),
 					_react2.default.createElement(
-						'dd',
+						"dl",
 						null,
-						'+3 tribal, +5 individual, +2 if picked'
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player wins reward"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+3 tribal, +5 individual, +2 if picked"
+						)
 					)
-				)
-			),
-			_react2.default.createElement(
-				'article',
-				null,
-				_react2.default.createElement(
-					'h3',
-					null,
-					'Surviving Tribal Council'
 				),
 				_react2.default.createElement(
-					'dl',
+					"article",
 					null,
 					_react2.default.createElement(
-						'dt',
+						"h3",
 						null,
-						'Player survives Tribal Council'
+						"Surviving Tribal Council"
 					),
 					_react2.default.createElement(
-						'dd',
+						"dl",
 						null,
-						'+2 for all who attend Tribal and are not voted out'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'3rd place'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+10'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Runner-up'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+14'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Sole Survivor'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+20'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Fan Favorite'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'+10'
-					),
-					_react2.default.createElement(
-						'dt',
-						null,
-						'Player Quits'
-					),
-					_react2.default.createElement(
-						'dd',
-						null,
-						'-5'
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player survives Tribal Council"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+2 for all who attend Tribal and are not voted out"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Third place"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+10"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Runner-up"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+14"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Sole Survivor"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+20"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Fan Favorite"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"+10"
+						),
+						_react2.default.createElement(
+							"dt",
+							null,
+							"Player quits"
+						),
+						_react2.default.createElement(
+							"dd",
+							null,
+							"-5"
+						)
 					)
 				)
 			)
@@ -28262,49 +28326,6 @@
 
 /***/ },
 /* 254 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(6);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRouter = __webpack_require__(177);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (props) {
-		return _react2.default.createElement(
-			'ul',
-			null,
-			_react2.default.createElement(
-				'li',
-				null,
-				_react2.default.createElement(
-					_reactRouter.Link,
-					{ to: '/rules/bachfantasy' },
-					'bachfantasy'
-				)
-			),
-			_react2.default.createElement(
-				'li',
-				null,
-				_react2.default.createElement(
-					_reactRouter.Link,
-					{ to: '/rules/survivor' },
-					'Survivor'
-				)
-			)
-		);
-	};
-
-/***/ },
-/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

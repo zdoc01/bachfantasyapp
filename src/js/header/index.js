@@ -11,7 +11,7 @@ export default props => {
 			<nav className="nav-bar clearfix container">
 				<ul className="left-nav">
 					<li><Link to="/">Home</Link></li>
-					<li><Link to="/rules">Rules</Link></li>
+					<li><Link to="/games">Games</Link></li>
 					<li><Link to="/about">About</Link></li>
 				</ul>
 				<RightNav username={username} />
