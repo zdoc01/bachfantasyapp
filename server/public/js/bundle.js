@@ -88,7 +88,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var routingMiddleware = (0, _reactRouterRedux.routerMiddleware)(_reactRouter.browserHistory);
-	var loggingMiddleware = (0, _reduxLogger2.default)();
+	var loggingMiddleware = window.location.hostname === 'localhost' ? (0, _reduxLogger2.default)() : function () {};
 	
 	var preloadedState = JSON.parse(window.__PRELOADED_STATE__); // calculated server side (see server/index.js)
 	

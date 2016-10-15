@@ -13,7 +13,7 @@ import reducers from './reducers';
 import routes from './routes';
 
 const routingMiddleware = routerMiddleware(browserHistory);
-const loggingMiddleware = createLogger();
+const loggingMiddleware = (window.location.hostname === 'localhost') ? createLogger() : () => {};
 
 const preloadedState = JSON.parse(window.__PRELOADED_STATE__); // calculated server side (see server/index.js)
 

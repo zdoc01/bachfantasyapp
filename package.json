@@ -40,6 +40,7 @@
     "react-router": "^2.4.1",
     "react-router-redux": "^4.0.6",
     "redux": "^3.6.0",
+    "redux-logger": "^2.7.0",
     "redux-thunk": "^2.1.0",
     "sass-loader": "^3.2.1",
     "style-loader": "^0.13.1",
@@ -50,8 +51,5 @@
     "heroku",
     "express",
     "react"
-  ],
-  "devDependencies": {
-    "redux-logger": "^2.7.0"
-  }
+  ]
 }
