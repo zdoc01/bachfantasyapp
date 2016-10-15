@@ -1,10 +1,10 @@
-import { leagues } from './leagues/reducers';
+import { routerReducer } from 'react-router-redux';
+import userReducer from './user/reducers';
 
-const initialState = {};
-
-export default (state = initialState, action) => {
+export default (state = {}, action) => {
 	return {
-		...state
-		// leagues: leagues(state.leagues, action)
+		...state,
+		user: userReducer(state.user, action),
+		routing: routerReducer(state.routing, action)
 	};
 };

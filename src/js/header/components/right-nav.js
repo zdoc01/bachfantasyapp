@@ -1,21 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import jsCookie from 'js-cookie';
 
 class RightNav extends Component {
 	constructor() {
 		super();
 	}
 
-	onLogout() {
-		jsCookie.remove('username');
-	}
-
 	renderReturningUserNav() {
 		return (
 			<ul className="right-nav">
 				<li>Welcome, {this.props.username}!</li>
-				<li><Link to="/" onClick={this.onLogout}>Logout</Link></li>
+				<li><Link to="/" onClick={this.props.onLogout}>Logout</Link></li>
 			</ul>
 		);
 	}
@@ -30,8 +25,14 @@ class RightNav extends Component {
 	}
 
 	render() {
-		return (this.props.username) ? this.renderReturningUserNav() : this.renderNewUserNav();
+		return (this.props.username) ?
+							this.renderReturningUserNav() : this.renderNewUserNav();
 	}
+};
+
+RightNav.propTypes = {
+	username: PropTypes.string,
+	onLogout: PropTypes.func
 };
 
 export default RightNav;

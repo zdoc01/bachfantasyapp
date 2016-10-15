@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './app';
 import Home from './home';
 import SignUp from './sign-up';
-import Login from './login';
+import { Login } from './login';
 import About from './about';
 import Games, { BachFantasy, Survivor } from './games'
 import Dash from './dashboard';

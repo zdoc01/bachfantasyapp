@@ -40,5 +40,6 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin(path.join('../', 'css', 'bundle.css'))
-  ]
+  ],
+  devtool: 'source-map' // generate source-maps for debugging in devtools
 };
