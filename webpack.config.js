@@ -18,7 +18,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'server', 'public', 'js'),
     filename: 'bundle.js',
-    publicPath: '/server/public/'
+    publicPath: '/public/'
   },
   module: {
     loaders: [
