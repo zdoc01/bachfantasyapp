@@ -17,7 +17,7 @@ db.once('open', console.log.bind(console, 'Successfully connected to mongo.'));
 
 app.set('port', (ENV.PORT || 5000));
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); // parse form data
 app.use(cookieParser());

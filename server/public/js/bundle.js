@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/public/";
+/******/ 	__webpack_require__.p = "/server/public/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -90,7 +90,7 @@
 	var routingMiddleware = (0, _reactRouterRedux.routerMiddleware)(_reactRouter.browserHistory);
 	var loggingMiddleware = (0, _reduxLogger2.default)();
 	
-	var preloadedState = JSON.parse(window.__PRELOADED_STATE__); // calculated server side (see server.js)
+	var preloadedState = JSON.parse(window.__PRELOADED_STATE__); // calculated server side (see server/index.js)
 	
 	var middleware = (0, _redux.applyMiddleware)(loggingMiddleware, routingMiddleware, _reduxThunk2.default // async action creators
 	);
