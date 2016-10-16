@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { withRouter } from 'react-router';
 
 class Login extends Component {
 
@@ -27,4 +26,4 @@ Login.propTypes = {
 	onSubmit: PropTypes.func.isRequired
 };
 
-export default withRouter(Login);
+export default Login;

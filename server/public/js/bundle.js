@@ -95,7 +95,9 @@
 	var middleware = [(0, _reactRouterRedux.routerMiddleware)(_reactRouter.browserHistory), _reduxThunk2.default];
 	
 	if (isDev) {
-	  middleware = [].concat(_toConsumableArray(middleware), [(0, _reduxLogger2.default)()]); // TODO - conditionally require server-side to prevent inclusion in bundle
+	  // TODO - conditionally require server-side to prevent inclusion in bundle
+	  // see https://github.com/reactjs/redux/issues/581
+	  middleware = [].concat(_toConsumableArray(middleware), [(0, _reduxLogger2.default)()]);
 	}
 	
 	var store = (0, _redux.createStore)(_reducers2.default, preloadedState, _redux.applyMiddleware.apply(undefined, _toConsumableArray(middleware)));
@@ -29937,17 +29939,17 @@
 	
 	var _signUp2 = _interopRequireDefault(_signUp);
 	
-	var _login = __webpack_require__(287);
+	var _login = __webpack_require__(291);
 	
-	var _about = __webpack_require__(293);
+	var _about = __webpack_require__(294);
 	
 	var _about2 = _interopRequireDefault(_about);
 	
-	var _games = __webpack_require__(294);
+	var _games = __webpack_require__(295);
 	
 	var _games2 = _interopRequireDefault(_games);
 	
-	var _dashboard = __webpack_require__(298);
+	var _dashboard = __webpack_require__(299);
 	
 	var _dashboard2 = _interopRequireDefault(_dashboard);
 	
@@ -30469,6 +30471,74 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _signUp = __webpack_require__(286);
+	
+	var _signUp2 = _interopRequireDefault(_signUp);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _signUp2.default;
+
+/***/ },
+/* 286 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _reactRedux = __webpack_require__(191);
+	
+	var _reactRouterRedux = __webpack_require__(262);
+	
+	var _signUp = __webpack_require__(287);
+	
+	var _signUp2 = _interopRequireDefault(_signUp);
+	
+	var _creators = __webpack_require__(288);
+	
+	var _creators2 = _interopRequireDefault(_creators);
+	
+	var _creators3 = __webpack_require__(283);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var handleResponse = function handleResponse(xhr, dispatch) {
+		if (xhr.readyState === XMLHttpRequest.DONE) {
+			var response = JSON.parse(xhr.responseText);
+	
+			if (xhr.status === 200) {
+				dispatch((0, _creators3.initUser)(response));
+				dispatch((0, _reactRouterRedux.push)('/dashboard')); // redirect to dashboard
+			} else {
+				// TODO - dispatch error
+				alert(response.message);
+			}
+		}
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			onSubmit: function onSubmit(e) {
+				dispatch((0, _creators2.default)(e.target, handleResponse));
+			}
+		};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_signUp2.default);
+
+/***/ },
+/* 287 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 	
@@ -30477,12 +30547,6 @@
 	var _react = __webpack_require__(6);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(201);
-	
-	var _forms = __webpack_require__(286);
-	
-	var _forms2 = _interopRequireDefault(_forms);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30501,24 +30565,10 @@
 			var _this = _possibleConstructorReturn(this, (SignUp.__proto__ || Object.getPrototypeOf(SignUp)).call(this, props));
 	
 			_this.onSubmit = _this.onSubmit.bind(_this);
-			_this.handleResponse = _this.handleResponse.bind(_this);
 			return _this;
 		}
 	
 		_createClass(SignUp, [{
-			key: 'handleResponse',
-			value: function handleResponse(xhr) {
-				if (xhr.readyState === XMLHttpRequest.DONE) {
-					if (xhr.status === 200) {
-						// redirect to Home
-						this.props.router.push('/');
-					} else {
-						var message = JSON.parse(xhr.responseText).message;
-						alert(message);
-					}
-				}
-			}
-		}, {
 			key: 'validate',
 			value: function validate(form) {
 				var email = form.querySelector('[name=email]');
@@ -30526,7 +30576,9 @@
 				var confirmed = form.querySelector('[name=confirm-password]');
 	
 				var err = '';
-				if (pwd.value !== confirmed.value) {
+				if (!email.value.match(/@/)) {
+					err = 'Please enter a valid email address.';
+				} else if (pwd.value !== confirmed.value) {
 					err = 'Uh oh, your passwords don\'t match!';
 				}
 	
@@ -30541,8 +30593,7 @@
 				if (error) {
 					alert(error);
 				} else {
-					console.log('submitting...');
-					_forms2.default.submit(e.target, this.handleResponse);
+					this.props.onSubmit(e);
 				}
 			}
 		}, {
@@ -30590,10 +30641,65 @@
 		return SignUp;
 	}(_react.Component);
 	
-	exports.default = (0, _reactRouter.withRouter)(SignUp);
+	SignUp.propTypes = {
+		onSubmit: _react.PropTypes.func.isRequired
+	};
+	
+	exports.default = SignUp;
 
 /***/ },
-/* 286 */
+/* 288 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _types = __webpack_require__(289);
+	
+	var _encodeForm = __webpack_require__(290);
+	
+	var _encodeForm2 = _interopRequireDefault(_encodeForm);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	/**
+	 * Async action creator (thunk) for form submits.
+	 * Provided callback handles the ajax response and
+	 * dispatches additional actions if necessary.
+	 * 
+	 * @param  {Form}     form HTML form reference
+	 * @param  {Function} cb   Callback to execute on XHR ready state change
+	 */
+	var submitForm = function submitForm(form, cb) {
+	  return function (dispatch) {
+	    var r = new XMLHttpRequest();
+	    r.open(form.method, form.action);
+	    r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	    r.onreadystatechange = function () {
+	      return cb(r, dispatch);
+	    };
+	    r.send((0, _encodeForm2.default)(form));
+	  };
+	};
+	
+	exports.default = submitForm;
+
+/***/ },
+/* 289 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var SUBMIT = exports.SUBMIT = '@@form/SUBMIT';
+
+/***/ },
+/* 290 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -30601,31 +30707,17 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	var encodeForm = function encodeForm(form) {
+	
+	exports.default = function (form) {
 		var elements = [].slice.call(form.elements); // convert to Array (from node list)
 		var values = elements.map(function (element) {
 			return encodeURIComponent(element.name) + '=' + encodeURIComponent(element.value);
 		});
 		return values.join('&');
 	};
-	
-	var submit = function submit(form, cb) {
-		var r = new XMLHttpRequest();
-		r.open(form.method, form.action);
-		r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		r.onreadystatechange = function () {
-			return cb(r);
-		};
-		r.send(encodeForm(form));
-	};
-	
-	exports.default = {
-		encodeForm: encodeForm,
-		submit: submit
-	};
 
 /***/ },
-/* 287 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30635,7 +30727,7 @@
 	});
 	exports.Login = undefined;
 	
-	var _login = __webpack_require__(288);
+	var _login = __webpack_require__(292);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
@@ -30644,7 +30736,7 @@
 	exports.Login = _login2.default;
 
 /***/ },
-/* 288 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30657,11 +30749,11 @@
 	
 	var _reactRouterRedux = __webpack_require__(262);
 	
-	var _login = __webpack_require__(289);
+	var _login = __webpack_require__(293);
 	
 	var _login2 = _interopRequireDefault(_login);
 	
-	var _creators = __webpack_require__(290);
+	var _creators = __webpack_require__(288);
 	
 	var _creators2 = _interopRequireDefault(_creators);
 	
@@ -30695,10 +30787,10 @@
 	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(_login2.default);
 
 /***/ },
-/* 289 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -30709,8 +30801,6 @@
 	var _react = __webpack_require__(6);
 	
 	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(201);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -30730,38 +30820,38 @@
 		}
 	
 		_createClass(Login, [{
-			key: 'render',
+			key: "render",
 			value: function render() {
 				var onSubmit = this.props.onSubmit;
 	
 	
 				return _react2.default.createElement(
-					'section',
+					"section",
 					null,
 					_react2.default.createElement(
-						'h1',
+						"h1",
 						null,
-						'Login'
+						"Login"
 					),
 					_react2.default.createElement(
-						'form',
-						{ method: 'POST', action: '/api/login', onSubmit: onSubmit },
+						"form",
+						{ method: "POST", action: "/api/login", onSubmit: onSubmit },
 						_react2.default.createElement(
-							'label',
+							"label",
 							null,
-							'Email: ',
-							_react2.default.createElement('input', { type: 'text', name: 'email', required: true })
+							"Email: ",
+							_react2.default.createElement("input", { type: "text", name: "email", required: true })
 						),
 						_react2.default.createElement(
-							'label',
+							"label",
 							null,
-							'Password: ',
-							_react2.default.createElement('input', { type: 'password', name: 'password', required: true })
+							"Password: ",
+							_react2.default.createElement("input", { type: "password", name: "password", required: true })
 						),
 						_react2.default.createElement(
-							'button',
-							{ type: 'submit' },
-							'Login'
+							"button",
+							{ type: "submit" },
+							"Login"
 						)
 					)
 				);
@@ -30775,79 +30865,10 @@
 		onSubmit: _react.PropTypes.func.isRequired
 	};
 	
-	exports.default = (0, _reactRouter.withRouter)(Login);
+	exports.default = Login;
 
 /***/ },
-/* 290 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _types = __webpack_require__(291);
-	
-	var _encodeForm = __webpack_require__(292);
-	
-	var _encodeForm2 = _interopRequireDefault(_encodeForm);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	/**
-	 * Async action creator (thunk) for form submits.
-	 * Provided callback handles the ajax response and
-	 * dispatches additional actions if necessary.
-	 * 
-	 * @param  {Form}     form HTML form reference
-	 * @param  {Function} cb   Callback to execute on XHR ready state change
-	 */
-	var submitForm = function submitForm(form, cb) {
-	  return function (dispatch) {
-	    var r = new XMLHttpRequest();
-	    r.open(form.method, form.action);
-	    r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	    r.onreadystatechange = function () {
-	      return cb(r, dispatch);
-	    };
-	    r.send((0, _encodeForm2.default)(form));
-	  };
-	};
-	
-	exports.default = submitForm;
-
-/***/ },
-/* 291 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var SUBMIT = exports.SUBMIT = '@@form/SUBMIT';
-
-/***/ },
-/* 292 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	exports.default = function (form) {
-		var elements = [].slice.call(form.elements); // convert to Array (from node list)
-		var values = elements.map(function (element) {
-			return encodeURIComponent(element.name) + '=' + encodeURIComponent(element.value);
-		});
-		return values.join('&');
-	};
-
-/***/ },
-/* 293 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30882,7 +30903,7 @@
 	};
 
 /***/ },
-/* 294 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30896,15 +30917,15 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _games = __webpack_require__(295);
+	var _games = __webpack_require__(296);
 	
 	var _games2 = _interopRequireDefault(_games);
 	
-	var _bachfantasy = __webpack_require__(296);
+	var _bachfantasy = __webpack_require__(297);
 	
 	var _bachfantasy2 = _interopRequireDefault(_bachfantasy);
 	
-	var _survivor = __webpack_require__(297);
+	var _survivor = __webpack_require__(298);
 	
 	var _survivor2 = _interopRequireDefault(_survivor);
 	
@@ -30915,7 +30936,7 @@
 	exports.default = _games2.default;
 
 /***/ },
-/* 295 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30967,7 +30988,7 @@
 	};
 
 /***/ },
-/* 296 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -31031,7 +31052,7 @@
 	};
 
 /***/ },
-/* 297 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -31326,7 +31347,7 @@
 	};
 
 /***/ },
-/* 298 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

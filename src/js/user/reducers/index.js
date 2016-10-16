@@ -6,9 +6,7 @@ import {
 export default (state, action) => {
 	switch(action.type) {
 		case INIT_USER:
-			return {
-				...action.user
-			};
+			return { ...action.user };
 			break;
 		case LOGOUT_USER:
 			return {};
