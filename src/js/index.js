@@ -12,21 +12,24 @@ import createLogger from 'redux-logger';
 import reducers from './reducers';
 import routes from './routes';
 
-const routingMiddleware = routerMiddleware(browserHistory);
-const loggingMiddleware = (window.location.hostname === 'localhost') ? createLogger() : () => {};
-
+const isDev = (window.location.hostname === 'localhost') ? true : false;
 const preloadedState = JSON.parse(window.__PRELOADED_STATE__); // calculated server side (see server/index.js)
 
-const middleware = applyMiddleware(
-  loggingMiddleware,
-  routingMiddleware,
-  thunk // async action creators
-);
+let middleware = [
+  routerMiddleware(browserHistory),
+  thunk
+];
+
+if (isDev) {
+  // TODO - conditionally require server-side to prevent inclusion in bundle
+  // see https://github.com/reactjs/redux/issues/581
+  middleware = [...middleware, createLogger()];
+}
 
 const store = createStore(
   reducers,
   preloadedState,
-  middleware
+  applyMiddleware(...middleware)
 );
 
 // Create an enhanced history that syncs navigation events with the store

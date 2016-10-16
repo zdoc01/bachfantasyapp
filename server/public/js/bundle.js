@@ -87,15 +87,18 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var routingMiddleware = (0, _reactRouterRedux.routerMiddleware)(_reactRouter.browserHistory);
-	var loggingMiddleware = window.location.hostname === 'localhost' ? (0, _reduxLogger2.default)() : function () {};
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
+	var isDev = window.location.hostname === 'localhost' ? true : false;
 	var preloadedState = JSON.parse(window.__PRELOADED_STATE__); // calculated server side (see server/index.js)
 	
-	var middleware = (0, _redux.applyMiddleware)(loggingMiddleware, routingMiddleware, _reduxThunk2.default // async action creators
-	);
+	var middleware = [(0, _reactRouterRedux.routerMiddleware)(_reactRouter.browserHistory), _reduxThunk2.default];
 	
-	var store = (0, _redux.createStore)(_reducers2.default, preloadedState, middleware);
+	if (isDev) {
+	  middleware = [].concat(_toConsumableArray(middleware), [(0, _reduxLogger2.default)()]); // TODO - conditionally require server-side to prevent inclusion in bundle
+	}
+	
+	var store = (0, _redux.createStore)(_reducers2.default, preloadedState, _redux.applyMiddleware.apply(undefined, _toConsumableArray(middleware)));
 	
 	// Create an enhanced history that syncs navigation events with the store
 	var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
