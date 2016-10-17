@@ -29927,7 +29927,11 @@
 	
 	var _reactRouter = __webpack_require__(201);
 	
-	var _app = __webpack_require__(277);
+	var _jsCookie = __webpack_require__(277);
+	
+	var _jsCookie2 = _interopRequireDefault(_jsCookie);
+	
+	var _app = __webpack_require__(278);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
@@ -29955,6 +29959,12 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var requireAuth = function requireAuth(nextState, replace) {
+	  if (!_jsCookie2.default.get('username')) {
+	    replace({ pathname: '/login' });
+	  }
+	};
+	
 	exports.default = _react2.default.createElement(
 	  _reactRouter.Route,
 	  { path: '/', component: _app2.default },
@@ -29962,7 +29972,7 @@
 	  _react2.default.createElement(_reactRouter.Route, { path: 'signup', component: _signUp2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: 'login', component: _login.Login }),
 	  _react2.default.createElement(_reactRouter.Route, { path: 'about', component: _about2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: 'dashboard', component: _dashboard2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: 'dashboard', component: _dashboard2.default, onEnter: requireAuth }),
 	  _react2.default.createElement(_reactRouter.Route, { path: 'games', component: _games2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: 'games/bachfantasy', component: _games.BachFantasy }),
 	  _react2.default.createElement(_reactRouter.Route, { path: 'games/survivor', component: _games.Survivor })
@@ -29970,163 +29980,6 @@
 
 /***/ },
 /* 277 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(6);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _header = __webpack_require__(278);
-	
-	var _header2 = _interopRequireDefault(_header);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = function (props) {
-		return _react2.default.createElement(
-			'div',
-			null,
-			_react2.default.createElement(_header2.default, null),
-			_react2.default.createElement(
-				'div',
-				{ className: 'container' },
-				props.children
-			)
-		);
-	};
-
-/***/ },
-/* 278 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _header = __webpack_require__(279);
-	
-	var _header2 = _interopRequireDefault(_header);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _header2.default;
-
-/***/ },
-/* 279 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _react = __webpack_require__(6);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(201);
-	
-	var _rightNav = __webpack_require__(280);
-	
-	var _rightNav2 = _interopRequireDefault(_rightNav);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = function (props) {
-		return _react2.default.createElement(
-			'header',
-			{ className: 'app-header' },
-			_react2.default.createElement(
-				'nav',
-				{ className: 'nav-bar clearfix container' },
-				_react2.default.createElement(
-					'ul',
-					{ className: 'left-nav' },
-					_react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: '/' },
-							'Home'
-						)
-					),
-					_react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: '/games' },
-							'Games'
-						)
-					),
-					_react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouter.Link,
-							{ to: '/about' },
-							'About'
-						)
-					)
-				),
-				_react2.default.createElement(_rightNav2.default, null)
-			)
-		);
-	};
-
-/***/ },
-/* 280 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	var _reactRedux = __webpack_require__(191);
-	
-	var _jsCookie = __webpack_require__(281);
-	
-	var _jsCookie2 = _interopRequireDefault(_jsCookie);
-	
-	var _rightNav = __webpack_require__(282);
-	
-	var _rightNav2 = _interopRequireDefault(_rightNav);
-	
-	var _creators = __webpack_require__(283);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-		return {
-			onLogout: function onLogout(e) {
-				_jsCookie2.default.remove('username');
-				dispatch((0, _creators.logoutUser)());
-			}
-		};
-	};
-	
-	var mapStateToProps = function mapStateToProps(state) {
-		return {
-			username: state.user.username
-		};
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_rightNav2.default);
-
-/***/ },
-/* 281 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -30286,6 +30139,172 @@
 		return init(function () {});
 	}));
 
+
+/***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(6);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _header = __webpack_require__(279);
+	
+	var _header2 = _interopRequireDefault(_header);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function (props) {
+		return _react2.default.createElement(
+			'div',
+			null,
+			_react2.default.createElement(_header2.default, null),
+			_react2.default.createElement(
+				'div',
+				{ className: 'container' },
+				props.children
+			)
+		);
+	};
+
+/***/ },
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _header = __webpack_require__(280);
+	
+	var _header2 = _interopRequireDefault(_header);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _header2.default;
+
+/***/ },
+/* 280 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _react = __webpack_require__(6);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(201);
+	
+	var _rightNav = __webpack_require__(281);
+	
+	var _rightNav2 = _interopRequireDefault(_rightNav);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function (props) {
+		return _react2.default.createElement(
+			'header',
+			{ className: 'app-header' },
+			_react2.default.createElement(
+				'nav',
+				{ className: 'nav-bar clearfix container' },
+				_react2.default.createElement(
+					'ul',
+					{ className: 'left-nav' },
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/' },
+							'Home'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/games' },
+							'Games'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/about' },
+							'About'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							_reactRouter.Link,
+							{ to: '/dashboard' },
+							'Dashboard'
+						)
+					)
+				),
+				_react2.default.createElement(_rightNav2.default, null)
+			)
+		);
+	};
+
+/***/ },
+/* 281 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	var _reactRedux = __webpack_require__(191);
+	
+	var _jsCookie = __webpack_require__(277);
+	
+	var _jsCookie2 = _interopRequireDefault(_jsCookie);
+	
+	var _rightNav = __webpack_require__(282);
+	
+	var _rightNav2 = _interopRequireDefault(_rightNav);
+	
+	var _creators = __webpack_require__(283);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+		return {
+			onLogout: function onLogout(e) {
+				_jsCookie2.default.remove('username');
+				dispatch((0, _creators.logoutUser)());
+			}
+		};
+	};
+	
+	var mapStateToProps = function mapStateToProps(state) {
+		return {
+			username: state.user.username
+		};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_rightNav2.default);
 
 /***/ },
 /* 282 */
