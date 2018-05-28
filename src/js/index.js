@@ -2,35 +2,12 @@ import '../scss/index.scss';
 
 import React from 'react';
 import { render } from 'react-dom';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 import { match, Router, browserHistory } from 'react-router';
-import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux';
-import createLogger from 'redux-logger';
+import { syncHistoryWithStore } from 'react-router-redux';
 
-import reducers from './reducers';
+import store from './store';
 import routes from './routes';
-
-const isDev = (window.location.hostname === 'localhost') ? true : false;
-const preloadedState = JSON.parse(window.__PRELOADED_STATE__); // calculated server side (see server/index.js)
-
-let middleware = [
-  routerMiddleware(browserHistory),
-  thunk
-];
-
-if (isDev) {
-  // TODO - conditionally require server-side to prevent inclusion in bundle
-  // see https://github.com/reactjs/redux/issues/581
-  middleware = [...middleware, createLogger()];
-}
-
-const store = createStore(
-  reducers,
-  preloadedState,
-  applyMiddleware(...middleware)
-);
 
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store);

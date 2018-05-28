@@ -8,9 +8,12 @@ import { Login } from './login';
 import About from './about';
 import Games, { BachFantasy, Survivor } from './games'
 import Dash from './dashboard';
+import store from './store';
 
 const requireAuth = (nextState, replace) => {
-    if (!jsCookie.get('username')) {
+    const state = store.getState();
+    const username = state && state.user && state.user.username;
+    if (!username) {
         replace({ pathname: '/login' });
     }
 };
