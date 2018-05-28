@@ -1,5 +1,7 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
+
+const Schema = mongoose.Schema;
 
 const encryptPass = password => {
 	return bcrypt.hashSync(password);
@@ -13,7 +15,7 @@ const userSchema = Schema({
 userSchema.methods.validatePassword = function (password) {
 	return bcrypt.compareSync(password, this.password);
 };
-	
+
 /**
  * Override toJSON to ensure we don't send the password
  * to the client.

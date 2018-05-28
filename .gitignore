@@ -3,5 +3,4 @@ node_modules/
 
 # Build Artifacts
 **/*.map
-public/css/bundle.css
-public/js/bundle.js
+public/
