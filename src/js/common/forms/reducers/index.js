@@ -1,16 +1,14 @@
-import {
-	SUBMIT
-} from '../actions/types';
+import { SUBMIT } from '../actions/types';
 
 const behaviors = {
-	[SUBMIT](state, action) {
-		const { form, callback } = action;
-		return state;
-	}
+  [SUBMIT](state/* , action */) {
+    // const { form, callback } = action;
+    return state;
+  },
 };
 
 export default (state, action) => {
-	console.log('handling form action... ', action.type);
-	const behavior = behaviors[ action.type ];
-	return (behavior) ? behavior(state, action) : state;
+  console.log('handling form action... ', action.type); /* eslint-disable-line no-console */
+  const behavior = behaviors[action.type];
+  return (behavior) ? behavior(state, action) : state;
 };

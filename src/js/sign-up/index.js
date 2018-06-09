@@ -1,3 +1,1 @@
-import SignUp from './containers/sign-up';
-
-export default SignUp;
+export { default } from './containers/sign-up';

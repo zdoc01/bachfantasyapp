@@ -1,17 +1,13 @@
 import {
-	INIT_USER,
-	LOGOUT_USER
+  INIT_USER,
+  LOGOUT_USER,
 } from './types';
 
-export const initUser = (user) => {
-	return {
-		type: INIT_USER,
-		user
-	};
-};
+export const initUser = user => ({
+  type: INIT_USER,
+  user,
+});
 
-export const logoutUser = () => {
-	return {
-		type: LOGOUT_USER
-	};
-};
+export const logoutUser = () => ({
+  type: LOGOUT_USER,
+});

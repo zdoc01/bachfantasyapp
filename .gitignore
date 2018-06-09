@@ -4,3 +4,6 @@ node_modules/
 # Build Artifacts
 **/*.map
 public/
+
+# Editors
+.vscode

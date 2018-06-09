@@ -4,11 +4,11 @@ import signup from './signup';
 import login from './login';
 
 export default () => {
-	const router = express.Router();
+  const router = express.Router();
 
-	router.use('/users', users());
-	router.use('/signup', signup());
-	router.use('/login', login());
+  router.use('/users', users());
+  router.use('/signup', signup());
+  router.use('/login', login());
 
-	return router;
+  return router;
 };

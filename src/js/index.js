@@ -1,10 +1,10 @@
-import '../scss/index.scss';
-
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { match, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
+
+import '../scss/index.scss';
 
 import store from './store';
 import routes from './routes';
@@ -14,9 +14,9 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 match({ history, routes }, (error, redirectLocation, renderProps) => {
   render(
-  	<Provider store={store}>
-  		<Router {...renderProps} />
-  	</Provider>,
-  	document.getElementById('main')
+    <Provider store={store}>
+      <Router {...renderProps} />
+    </Provider>,
+    document.getElementById('main'),
   );
 });

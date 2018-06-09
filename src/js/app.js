@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Header from './header';
 
-export default props => {
-	return (
-		<div>
-			<Header />
-			<div className="container">
-				{props.children}
-			</div>
-		</div>
-	);
+const { arrayOf, node } = PropTypes;
+
+const App = props => (
+  <div>
+    <Header />
+    <div className="container">
+      {props.children}
+    </div>
+  </div>
+);
+
+App.propTypes = {
+  children: arrayOf(node).isRequired,
 };
+
+export default App;

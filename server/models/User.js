@@ -1,19 +1,19 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
-const Schema = mongoose.Schema;
+// mongoose is a commonjs module
+// (import with object destructuring throws)
+const Schema = mongoose.Schema; /* eslint-disable-line prefer-destructuring */
 
-const encryptPass = password => {
-	return bcrypt.hashSync(password);
-};
+const encryptPass = password => bcrypt.hashSync(password);
 
 const userSchema = Schema({
-	password: { type: String, set: encryptPass },
-	username: String
+  password: { type: String, set: encryptPass },
+  username: String,
 });
 
-userSchema.methods.validatePassword = function (password) {
-	return bcrypt.compareSync(password, this.password);
+userSchema.methods.validatePassword = function validatePassword(password) {
+  return bcrypt.compareSync(password, this.password);
 };
 
 /**
@@ -21,10 +21,10 @@ userSchema.methods.validatePassword = function (password) {
  * to the client.
  * @return {JSON} The user data
  */
-userSchema.methods.toJSON = function() {
-	let obj = this.toObject();
-	delete obj.password;
-	return obj;
+userSchema.methods.toJSON = function toJSON() {
+  const obj = this.toObject();
+  delete obj.password;
+  return obj;
 };
 
 export default mongoose.model('User', userSchema);

@@ -7,6 +7,8 @@
     "all": "npm run build && npm start",
     "build": "./node_modules/.bin/webpack --config=config/webpack.config.js",
     "build:dev": "npm run build -- --mode=development",
+    "lint": "./node_modules/.bin/eslint src/ server/",
+    "lint:fix": "./node_modules/.bin/eslint --fix src/ server/",
     "start": "node bin/start",
     "watch": "./node_modules/.bin/webpack --progress --colors --watch"
   },
@@ -55,6 +57,11 @@
     "react"
   ],
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1",
     "webpack-cli": "^2.1.4"
   }
 }

@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+
 import { compose, createStore, applyMiddleware } from 'redux';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
@@ -9,7 +11,8 @@ const isClient = (typeof window !== 'undefined');
 
 const preloadedState = (
   isClient
-    ? JSON.parse(window.__PRELOADED_STATE__) // calculated server side (see server/index.js)
+    // calculated server side (see server/index.js)
+    ? JSON.parse(window.__PRELOADED_STATE__)
     : {}
 );
 
@@ -22,12 +25,10 @@ const composeEnhancers = (
 const store = createStore(
   reducers,
   preloadedState,
-  composeEnhancers(
-    applyMiddleware(
-      routerMiddleware(browserHistory),
-      thunk
-    )
-  )
+  composeEnhancers(applyMiddleware(
+    routerMiddleware(browserHistory),
+    thunk,
+  )),
 );
 
 export default store;

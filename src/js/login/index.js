@@ -1,5 +1,1 @@
-import Login from './containers/login';
-
-export {
-	Login
-};
+export { default } from './containers/login';
