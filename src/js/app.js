@@ -6,9 +6,7 @@ const { arrayOf, node } = PropTypes;
 const App = props => (
   <div>
     <Header />
-    <div className="container">
-      {props.children}
-    </div>
+    <div className="container">{props.children}</div>
   </div>
 );
 

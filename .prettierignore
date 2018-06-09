@@ -1,0 +1,5 @@
+# build assets
+server/public/
+
+# configs
+.eslintrc.js

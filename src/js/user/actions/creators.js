@@ -1,7 +1,4 @@
-import {
-  INIT_USER,
-  LOGOUT_USER,
-} from './types';
+import { INIT_USER, LOGOUT_USER } from './types';
 
 export const initUser = user => ({
   type: INIT_USER,

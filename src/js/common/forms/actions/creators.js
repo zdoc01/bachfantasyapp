@@ -9,7 +9,7 @@ import encodeForm from '../utils/encode-form';
  * @param  {Form}     form HTML form reference
  * @param  {Function} cb   Callback to execute on XHR ready state change
  */
-const submitForm = (form, cb) => (dispatch) => {
+const submitForm = (form, cb) => dispatch => {
   const r = new XMLHttpRequest();
   r.open(form.method, form.action);
   r.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

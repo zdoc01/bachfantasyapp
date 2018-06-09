@@ -6,7 +6,17 @@ export default () => (
   <section>
     <h1>Survivor</h1>
     <p>A fantasy game for the hit CBS show Survivor.</p>
-    <p>Visit the <a href="http://www.cbs.com/shows/survivor/" target="_blank" rel="noopener noreferrer">ABC website</a> for more information.</p>
+    <p>
+      Visit the{' '}
+      <a
+        href="http://www.cbs.com/shows/survivor/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ABC website
+      </a>{' '}
+      for more information.
+    </p>
 
     <article>
       <h2>Rules</h2>
@@ -14,13 +24,22 @@ export default () => (
         <h3>Confessionals and Questions</h3>
         <dl>
           <dt>Player confessionals</dt>
-          <dd>+1 per confessional (10 seconds between confessionals is a new confessional for scoring purposes)</dd>
+          <dd>
+            +1 per confessional (10 seconds between confessionals is a new
+            confessional for scoring purposes)
+          </dd>
           <dt>Player voting confessional</dt>
-          <dd>+2 if Player has a confessional while casting their vote at Tribal Council</dd>
+          <dd>
+            +2 if Player has a confessional while casting their vote at Tribal
+            Council
+          </dd>
           <dt>Player says the title of the episode</dt>
           <dd>+3</dd>
           <dt>Jeff Probst questions</dt>
-          <dd>+1 per question directed to the Player by Jeff at Tribal Council or a Challenge</dd>
+          <dd>
+            +1 per question directed to the Player by Jeff at Tribal Council or
+            a Challenge
+          </dd>
         </dl>
       </article>
 
@@ -28,20 +47,37 @@ export default () => (
         <h3>Immunity and Idols</h3>
         <dl>
           <dt>Player wins immunity</dt>
-          <dd>+4 tribal, +7 individual, +10 for winning Final Immunity Challenge</dd>
-          <dt>Player&apos;s Tribe gets second place in immunity challenge (three-tribe format only)</dt>
+          <dd>
+            +4 tribal, +7 individual, +10 for winning Final Immunity Challenge
+          </dd>
+          <dt>
+            Player&apos;s Tribe gets second place in immunity challenge
+            (three-tribe format only)
+          </dt>
           <dd>+3</dd>
           <dt>Player finds or plays a hidden immunity idol</dt>
           <dd>+5</dd>
-          <dt>Player has possession of a hidden immunity idol at the start of an episode</dt>
+          <dt>
+            Player has possession of a hidden immunity idol at the start of an
+            episode
+          </dt>
           <dd>+1</dd>
-          <dt>Player is awarded, finds, or plays extra vote advantage (if implemented this season)</dt>
+          <dt>
+            Player is awarded, finds, or plays extra vote advantage (if
+            implemented this season)
+          </dt>
           <dd>+5</dd>
-          <dt>Player receives Legacy Advantage (either when found or when willed by the exiting Player who previously held the Advantage)</dt>
+          <dt>
+            Player receives Legacy Advantage (either when found or when willed
+            by the exiting Player who previously held the Advantage)
+          </dt>
           <dd>+5</dd>
           <dt>Player is saved from elimination by hidden immunity idol</dt>
           <dd>+10</dd>
-          <dt>Player is saved from elimination by extra vote advantage (if implemented this season)</dt>
+          <dt>
+            Player is saved from elimination by extra vote advantage (if
+            implemented this season)
+          </dt>
           <dd>+10</dd>
         </dl>
       </article>

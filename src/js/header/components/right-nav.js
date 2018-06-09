@@ -7,7 +7,11 @@ class RightNav extends Component {
     return (
       <ul className="right-nav">
         <li>Welcome, {this.props.username}!</li>
-        <li><Link to="/" onClick={this.props.onLogout}>Logout</Link></li>
+        <li>
+          <Link to="/" onClick={this.props.onLogout}>
+            Logout
+          </Link>
+        </li>
       </ul>
     );
   }
@@ -16,15 +20,20 @@ class RightNav extends Component {
   renderNewUserNav() {
     return (
       <ul className="right-nav">
-        <li><Link to="/signup">Sign Up</Link></li>
-        <li><Link to="/login">Login</Link></li>
+        <li>
+          <Link to="/signup">Sign Up</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
       </ul>
     );
   }
 
   render() {
-    return (this.props.username) ?
-      this.renderReturningUserNav() : this.renderNewUserNav();
+    return this.props.username
+      ? this.renderReturningUserNav()
+      : this.renderNewUserNav();
   }
 }
 

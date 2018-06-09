@@ -1,7 +1,4 @@
-import {
-  CREATE_LEAGUE,
-  DELETE_LEAGUE,
-} from '../actions/types';
+import { CREATE_LEAGUE, DELETE_LEAGUE } from '../actions/types';
 import createLeague from './create-league';
 import deleteLeague from './delete-league';
 

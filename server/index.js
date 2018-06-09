@@ -20,7 +20,7 @@ const db = mongoose.connection;
 db.on('error', onError);
 db.once('open', onOpen);
 
-app.set('port', (ENV.PORT || 5000));
+app.set('port', ENV.PORT || 5000);
 
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.json());
@@ -41,7 +41,9 @@ app.get('*', (req, res) => {
 
     /* eslint-disable-next-line consistent-return */
     return User.findOne({ username }, (err, user) => {
-      if (err) { return matchRoute(req, res); }
+      if (err) {
+        return matchRoute(req, res);
+      }
 
       console.log('user found in mongo!');
 

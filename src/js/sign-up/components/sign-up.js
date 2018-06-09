@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-const validateForm = (form) => {
+const validateForm = form => {
   const email = form.querySelector('[name=email]');
   const pwd = form.querySelector('[name=password]');
   const confirmed = form.querySelector('[name=confirm-password]');
@@ -9,7 +9,7 @@ const validateForm = (form) => {
   if (!email.value.match(/@/)) {
     err = 'Please enter a valid email address.';
   } else if (pwd.value !== confirmed.value) {
-    err = 'Uh oh, your passwords don\'t match!';
+    err = "Uh oh, your passwords don't match!";
   }
 
   return err;
@@ -44,7 +44,8 @@ class SignUp extends Component {
             Password: <input type="password" name="password" required />
           </label>
           <label htmlFor="confirm-password">
-            Confirm Password: <input type="password" name="confirm-password" required />
+            Confirm Password:{' '}
+            <input type="password" name="confirm-password" required />
           </label>
           <button type="submit">Create Account</button>
         </form>

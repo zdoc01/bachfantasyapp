@@ -7,28 +7,20 @@ import thunk from 'redux-thunk';
 
 import reducers from './reducers';
 
-const isClient = (typeof window !== 'undefined');
+const isClient = typeof window !== 'undefined';
 
-const preloadedState = (
-  isClient
-    // calculated server side (see server/index.js)
-    ? JSON.parse(window.__PRELOADED_STATE__)
-    : {}
-);
+const preloadedState = isClient
+  ? JSON.parse(window.__PRELOADED_STATE__) // calculated server side (see server/index.js)
+  : {};
 
-const composeEnhancers = (
-  isClient
-    ? (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose)
-    : compose
-);
+const composeEnhancers = isClient
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+  : compose;
 
 const store = createStore(
   reducers,
   preloadedState,
-  composeEnhancers(applyMiddleware(
-    routerMiddleware(browserHistory),
-    thunk,
-  )),
+  composeEnhancers(applyMiddleware(routerMiddleware(browserHistory), thunk))
 );
 
 export default store;

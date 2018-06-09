@@ -12,12 +12,16 @@ export default () => {
       }
 
       if (user) {
-        console.log(`User with username [ ${user.username} ] already exists.`); /* eslint-disable-line no-console */
+        /* eslint-disable-next-line no-console */
+        console.log(`User with username [ ${user.username} ] already exists.`);
         if (user.validatePassword(req.body.password)) {
           res.cookie('username', user.username);
           res.status(200).send(user.toJSON());
         } else {
-          res.status(403).send({ message: 'The email address you provided already exists, but the password doesn\'t match. Please try again.' });
+          res.status(403).send({
+            message:
+              "The email address you provided already exists, but the password doesn't match. Please try again.",
+          });
         }
       } else {
         const newUser = new User({

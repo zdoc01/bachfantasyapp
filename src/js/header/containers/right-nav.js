@@ -14,4 +14,7 @@ const mapStateToProps = state => ({
   username: state.user.username,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RightNav);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RightNav);

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Login = (props) => {
+const Login = props => {
   const { onSubmit } = props;
 
   return (

@@ -19,10 +19,13 @@ const handleResponse = (xhr, dispatch) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  onSubmit: (e) => {
+  onSubmit: e => {
     e.preventDefault();
     dispatch(submitForm(e.target, handleResponse));
   },
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(
+  null,
+  mapDispatchToProps
+)(Login);
