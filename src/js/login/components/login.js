@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { func } from 'prop-types';
 
 const Login = props => {
   const { onSubmit } = props;
@@ -20,7 +21,7 @@ const Login = props => {
 };
 
 Login.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: func.isRequired,
 };
 
 export default Login;

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push } from 'connected-react-router';
 import SignUp from '../components/sign-up';
 import submitForm from '../../common/forms/actions/creators';
 import { initUser } from '../../user/actions/creators';

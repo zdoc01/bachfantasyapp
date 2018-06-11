@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 
 import User from './models/User';
 import serverRoutes from './routes';
-import matchRoute from './matchRoute';
+import ssr from './ssr';
 
 const ENV = process.env;
 const app = express();
@@ -42,17 +42,16 @@ app.get('*', (req, res) => {
     /* eslint-disable-next-line consistent-return */
     return User.findOne({ username }, (err, user) => {
       if (err) {
-        return matchRoute(req, res);
+        return ssr(req, res);
       }
 
       console.log('user found in mongo!');
 
-      // match route here
-      matchRoute(req, res, { user: user.toJSON() });
+      ssr(req, res, { user: user.toJSON() });
     });
   }
 
-  return matchRoute(req, res);
+  return ssr(req, res);
 });
 
 app.listen(app.get('port'), () => {

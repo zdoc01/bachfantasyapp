@@ -1,17 +1,14 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Header from './header';
+import Routes from './routes';
 
-const { arrayOf, node } = PropTypes;
-
-const App = props => (
+const App = () => (
   <div>
     <Header />
-    <div className="container">{props.children}</div>
+    <div className="container">
+      <Routes />
+    </div>
   </div>
 );
-
-App.propTypes = {
-  children: arrayOf(node).isRequired,
-};
 
 export default App;

@@ -31,31 +31,28 @@
     "babel-loader": "^8.0.0-beta.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
+    "connected-react-router": "^4.3.0",
     "cookie-parser": "^1.4.3",
     "css-loader": "^0.23.1",
     "ejs": "2.3.3",
     "express": "4.13.3",
+    "history": "^4.7.2",
     "js-cookie": "^2.1.2",
     "mini-css-extract-plugin": "^0.4.0",
     "mongoose": "^4.5.5",
     "node-sass": "^4.9.0",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
-    "react-redux": "^4.4.5",
-    "react-router": "^2.4.1",
-    "react-router-redux": "^4.0.6",
-    "redux": "^3.6.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
     "redux-thunk": "^2.1.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.13.1",
     "webpack": "^4.9.1"
   },
-  "keywords": [
-    "node",
-    "heroku",
-    "express",
-    "react"
-  ],
   "devDependencies": {
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.1",
@@ -70,6 +67,13 @@
     "prettier": "1.13.5",
     "webpack-cli": "^2.1.4"
   },
+  "keywords": [
+    "node",
+    "heroku",
+    "express",
+    "react",
+    "redux"
+  ],
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",

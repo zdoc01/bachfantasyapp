@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import RightNav from '../containers/right-nav';
 
-export default (/* props */) => (
+export default () => (
   <header className="app-header">
     <nav className="nav-bar clearfix container">
       <ul className="left-nav">

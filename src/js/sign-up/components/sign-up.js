@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { func } from 'prop-types';
 
 const validateForm = form => {
   const email = form.querySelector('[name=email]');
@@ -55,7 +56,7 @@ class SignUp extends Component {
 }
 
 SignUp.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: func.isRequired,
 };
 
 export default SignUp;

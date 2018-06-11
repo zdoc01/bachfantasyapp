@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react';
+import { func, string } from 'prop-types';
+import { Link } from 'react-router-dom';
 
 // TODO: refactor
 class RightNav extends Component {
@@ -38,8 +39,8 @@ class RightNav extends Component {
 }
 
 RightNav.propTypes = {
-  username: PropTypes.string,
-  onLogout: PropTypes.func.isRequired,
+  username: string,
+  onLogout: func.isRequired,
 };
 
 RightNav.defaultProps = {

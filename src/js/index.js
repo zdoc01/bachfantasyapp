@@ -1,22 +1,27 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
-import { match, Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { createBrowserHistory } from 'history';
+import { ConnectedRouter } from 'connected-react-router';
 
 import '../scss/index.scss';
 
-import store from './store';
-import routes from './routes';
+import { createStore } from './store';
+import App from './app';
 
-// Create an enhanced history that syncs navigation events with the store
-const history = syncHistoryWithStore(browserHistory, store);
+const history = createBrowserHistory();
+const store = createStore(history);
 
-match({ history, routes }, (error, redirectLocation, renderProps) => {
-  render(
-    <Provider store={store}>
-      <Router {...renderProps} />
-    </Provider>,
-    document.getElementById('main')
-  );
-});
+// `hydrate` will hook into the data-react-id attributes
+// from the server-rendered HTML. This will connect our
+// newly-started React instance to the virtual DOM used
+// on the server.
+hydrate(
+  <Provider store={store}>
+    {/* ConnectedRouter syncs navigation events with the store */}
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('main')
+);
